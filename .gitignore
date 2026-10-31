@@ -1,0 +1,10 @@
+bin/
+tmp/
+dist/
+coverage.out
+.env
+.DS_Store
+.idea/
+.vscode/
+vendor/
+_legacy_kernel/

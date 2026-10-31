@@ -1,0 +1,16 @@
+.git
+.github
+.idea
+.vscode
+.DS_Store
+.env
+.env.*
+!.env.example
+bin/
+tmp/
+dist/
+coverage.out
+*.md
+_legacy_kernel/
+docker-compose.yml
+Makefile

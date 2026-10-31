@@ -1,0 +1,31 @@
+# Local backing services only (the API runs natively via `make run`).
+# Non-default host ports so they never collide with Homebrew's Postgres/Redis.
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: arafa
+      POSTGRES_PASSWORD: arafa
+      POSTGRES_DB: arafa360
+    ports:
+      - "${POSTGRES_PORT:-5435}:5432"
+    volumes:
+      - arafa_pg:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U arafa -d arafa360"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "${REDIS_PORT:-6381}:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+volumes:
+  arafa_pg:
